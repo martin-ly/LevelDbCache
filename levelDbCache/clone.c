@@ -490,10 +490,6 @@ static void
 	char* errptr;
 	char *key;
 	char *value;
-	zmq_pollitem_t poll_set [] = {
-		{ pipe, 0, ZMQ_POLLIN, 0 },
-		{ 0,    0, ZMQ_POLLIN, 0 }
-	};
 	int poll_size = 1;
 	char SNumber[14];	
 	Bool initial = TRUE;
@@ -503,6 +499,10 @@ static void
 		int rc;
 		int size;
 		int poll_timer = -1;
+		zmq_pollitem_t poll_set [] = {
+			{ pipe, 0, ZMQ_POLLIN, 0 },
+			{ 0,    0, ZMQ_POLLIN, 0 }
+		};
 		server_t *server = agent->server [agent->cur_server];
 		agent->pReturnCallbcksnapshot= clnt->pReturnCallbcksnapshot;
 		agent->pReturnCallbckupdate= clnt->pReturnCallbckupdate;
